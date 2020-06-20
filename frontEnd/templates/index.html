@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Plotly -->
+    <!-- Personal Styles -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Sacramento House Predictor</title>
+</head>
+
+<body class="bg-light">
+
+    <div class="container-fluid" id="topHeader">
+
+        <div class="jumbotron jumbo-bg logo-header">
+            <img src="static/sac-homes-blk.svg" alt="Sac Homes Logo" height="200">
+        </div>
+
+    </div>
+
+    <br>
+    <h1 style="text-align: center;">Sacramento Region Rental Price Generator</h1>
+    <div class="container">
+        <h4>About</h4>
+        <div class="row">
+            <p>
+                We created a prediction model based on historic property rental prices in the Sacramento region. We leveraged thousands of data points to build out our prediction model. In order to output a monthly rent price, please enter the details and criteria about
+                the rental property.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <h4>Enter your filter criteria:</h4>
+        <div class="row">
+
+            <div class="col container my-4">
+
+                <h6>
+                    Neighborhood:
+                </h6>
+                <select class="form-control select2" searchable="Search here..">
+                    <option value="" disabled selected>Choose your neighborhood</option>
+                    <option value="Alhambra Triangle">Alhambra Triangle</option>
+                    <option value="Alkali Flat">Alkali Flat</option>
+                    <option value="American River Canyon">American River Canyon</option>
+                    <option value="American River Canyon North">American River Canyon North</option>
+                    <option value="American River Parkway">American River Parkway</option>
+                    <option value="Arcade Creek">Arcade Creek</option>
+                    <option value="Avondale">Avondale</option>
+                    <option value="Ben Ali">Ben Ali</option>
+                    <option value="Birdcage Heights">Birdcage Heights</option>
+                    <option value="Boulevard Park">Boulevard Park</option>
+                    <option value="Brentwood">Brentwood</option>
+                    <option value="Broderrick/Bryte">Broderrick/Bryte</option>
+                    <option value="Campus Commons">Campus Commons</option>
+                    <option value="Cannon Industrial Park">Cannon Industrial Park</option>
+                    <option value="Capital Village">Capital Village</option>
+                    <option value="Carelton Tract">Carelton Tract</option>
+                    <option value="Central Oak Park">Central Oak Park</option>
+                    <option value="CHANT">CHANT</option>
+                    <option value="Chase">Chase</option>
+                    <option value="College-Glen">College-Glen</option>
+                    <option value="Colonial Heights">Colonial Heights</option>
+                    <option value="Colonial Manor">Colonial Manor</option>
+                    <option value="Colonial Village">Colonial Village</option>
+                    <option value="Cordova Gardens">Cordova Gardens</option>
+                    <option value="Cordova Lane">Cordova Lane</option>
+                    <option value="Cordova Meadows">Cordova Meadows</option>
+                    <option value="Cordova Vineyards">Cordova Vineyards</option>
+                    <option value="Creekside">Creekside</option>
+                    <option value="CSUS">CSUS</option>
+                    <option value="Curtis Park">Curtis Park</option>
+                    <option value="Del Paso Heights">Del Paso Heights</option>
+                    <option value="Del Paso Park">Del Paso Park</option>
+                    <option value="Downtown">Downtown</option>
+                    <option value="East Del Paso Heights">East Del Paso Heights</option>
+                    <option value="East Sacramento">East Sacramento</option>
+                    <option value="Elmhurst">Elmhurst</option>
+                    <option value="Erikson Industrial Park">Erikson Industrial Park</option>
+                    <option value="Fairgrounds">Fairgrounds</option>
+                    <option value="Foothill Farms">Foothill Farms</option>
+                    <option value="Freeport Manor">Freeport Manor</option>
+                    <option value="Fruitridge Manor">Fruitridge Manor</option>
+                    <option value="Gardenland">Gardenland</option>
+                    <option value="Gateway Center">Gateway Center</option>
+                    <option value="Gateway West">Gateway West</option>
+                    <option value="Glen Elder">Glen Elder</option>
+                    <option value="Glenwood Meadows">Glenwood Meadows</option>
+                    <option value="Golf Course Terrace">Golf Course Terrace</option>
+                    <option value="Greenhaven">Greenhaven</option>
+                    <option value="Hagginwood">Hagginwood</option>
+                    <option value="Hollywood Park">Hollywood Park</option>
+                    <option value="Johnson Heights">Johnson Heights</option>
+                    <option value="Kavalia Ranch">Kavalia Ranch</option>
+                    <option value="Land Park">Land Park</option>
+                    <option value="Lawrence Park">Lawrence Park</option>
+                    <option value="Lighthouse">Lighthouse</option>
+                    <option value="Little Pocket">Little Pocket</option>
+                    <option value="Mangan Park">Mangan Park</option>
+                    <option value="Mansion Flats">Mansion Flats</option>
+                    <option value="Marshall School">Marshall School</option>
+                    <option value="Meadowview">Meadowview</option>
+                    <option value="Medical Center">Medical Center</option>
+                    <option value="Metro Center">Metro Center</option>
+                    <option value="Michigan-Glide-Sutter">Michigan-Glide-Sutter</option>
+                    <option value="Midtown - Winn Park Capital Avenue">Midtown - Winn Park Capital Avenue</option>
+                    <option value="Mills Ranch">Mills Ranch</option>
+                    <option value="Natomas Creek">Natomas Creek</option>
+                    <option value="Natomas Crossing">Natomas Crossing</option>
+                    <option value="Natomas Park">Natomas Park</option>
+                    <option value="New Era Park">New Era Park</option>
+                    <option value="Newton Booth">Newton Booth</option>
+                    <option value="Noralto">Noralto</option>
+                    <option value="North City Farms">North City Farms</option>
+                    <option value="North Highlands">North Highlands</option>
+                    <option value="North Oak Park">North Oak Park</option>
+                    <option value="North Pointe">North Pointe</option>
+                    <option value="Northeast Village">Northeast Village</option>
+                    <option value="Northgate">Northgate</option>
+                    <option value="Northwest">Northwest</option>
+                    <option value="Northwest Village">Northwest Village</option>
+                    <option value="Oak Knoll">Oak Knoll</option>
+                    <option value="Old North Sacramento">Old North Sacramento</option>
+                    <option value="Old West Sacramento">Old West Sacramento</option>
+                    <option value="Park Oaks">Park Oaks</option>
+                    <option value="Parker Homes">Parker Homes</option>
+                    <option value="Parkway">Parkway</option>
+                    <option value="Pocket">Pocket</option>
+                    <option value="Point West">Point West</option>
+                    <option value="Port North">Port North</option>
+                    <option value="PSIP">PSIP</option>
+                    <option value="Raley Industrial Park">Raley Industrial Park</option>
+                    <option value="Richards">Richards</option>
+                    <option value="Richardson Village">Richardson Village</option>
+                    <option value="Richmond Grove">Richmond Grove</option>
+                    <option value="Rio del Oro">Rio del Oro</option>
+                    <option value="River Gardens">River Gardens</option>
+                    <option value="River Park">River Park</option>
+                    <option value="Robla">Robla</option>
+                    <option value="RP Sports Complex">RP Sports Complex</option>
+                    <option value="Rusch Park">Rusch Park</option>
+                    <option value="Sierra Oaks">Sierra Oaks</option>
+                    <option value="South City Farms">South City Farms</option>
+                    <option value="South Hagginwood">South Hagginwood</option>
+                    <option value="South Land Park">South Land Park</option>
+                    <option value="South Natomas">South Natomas</option>
+                    <option value="South Oak Park">South Oak Park</option>
+                    <option value="South White Rock">South White Rock</option>
+                    <option value="Southeast Village">Southeast Village</option>
+                    <option value="Southside Park">Southside Park</option>
+                    <option value="Southwest Village">Southwest Village</option>
+                    <option value="Stone Creek">Stone Creek</option>
+                    <option value="Strawberry Manor">Strawberry Manor</option>
+                    <option value="Sun River">Sun River</option>
+                    <option value="Sunridge Anatolia">Sunridge Anatolia</option>
+                    <option value="Sunridge Park">Sunridge Park</option>
+                    <option value="Sunrise Oaks">Sunrise Oaks</option>
+                    <option value="Sunrise Ranch">Sunrise Ranch</option>
+                    <option value="Swanston Estates">Swanston Estates</option>
+                    <option value="Sylvan Old Auburn Road">Sylvan Old Auburn Road</option>
+                    <option value="Tahoe Park">Tahoe Park</option>
+                    <option value="Tahoe Park East">Tahoe Park East</option>
+                    <option value="Tahoe Park South">Tahoe Park South</option>
+                    <option value="Tallac Village">Tallac Village</option>
+                    <option value="Triangle">Triangle</option>
+                    <option value="Upper Land Park">Upper Land Park</option>
+                    <option value="Valley High-North Laguna">Valley High-North Laguna</option>
+                    <option value="Village 11">Village 11</option>
+                    <option value="Village 12">Village 12</option>
+                    <option value="Village 2">Village 2</option>
+                    <option value="Village 5">Village 5</option>
+                    <option value="Village 7">Village 7</option>
+                    <option value="Village 9">Village 9</option>
+                    <option value="Vineyard">Vineyard</option>
+                    <option value="Walnut Wood">Walnut Wood</option>
+                    <option value="West Del Paso Heights">West Del Paso Heights</option>
+                    <option value="West Tahoe Park">West Tahoe Park</option>
+                    <option value="Westlake">Westlake</option>
+                    <option value="White Rock">White Rock</option>
+                    <option value="Willowcreek">Willowcreek</option>
+                    <option value="Wills Acres">Wills Acres</option>
+                    <option value="Woodbine">Woodbine</option>
+                    <option value="Woodlake">Woodlake</option>
+                    <option value="Z'berg Park">Z'berg Park</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+
+                <h6>
+                    Zipcode:
+                </h6>
+                <select class="form-control select2" searchable="Search here..">
+                    <option value="" disabled selected>Choose your zipcode</option>
+                    <option value="95605">95605</option>
+                    <option value="95608">95608</option>
+                    <option value="95610">95610</option>
+                    <option value="95612">95612</option>
+                    <option value="95621">95621</option>
+                    <option value="95624">95624</option>
+                    <option value="95626">95626</option>
+                    <option value="95628">95628</option>
+                    <option value="95630">95630</option>
+                    <option value="95655">95655</option>
+                    <option value="95660">95660</option>
+                    <option value="95662">95662</option>
+                    <option value="95670">95670</option>
+                    <option value="95673">95673</option>
+                    <option value="95683">95683</option>
+                    <option value="95691">95691</option>
+                    <option value="95693">95693</option>
+                    <option value="95742">95742</option>
+                    <option value="95758">95758</option>
+                    <option value="95811">95811</option>
+                    <option value="95814">95814</option>
+                    <option value="95815">95815</option>
+                    <option value="95816">95816</option>
+                    <option value="95817">95817</option>
+                    <option value="95818">95818</option>
+                    <option value="95819">95819</option>
+                    <option value="95820">95820</option>
+                    <option value="95821">95821</option>
+                    <option value="95822">95822</option>
+                    <option value="95823">95823</option>
+                    <option value="95824">95824</option>
+                    <option value="95825">95825</option>
+                    <option value="95826">95826</option>
+                    <option value="95827">95827</option>
+                    <option value="95828">95828</option>
+                    <option value="95829">95829</option>
+                    <option value="95830">95830</option>
+                    <option value="95831">95831</option>
+                    <option value="95832">95832</option>
+                    <option value="95833">95833</option>
+                    <option value="95834">95834</option>
+                    <option value="95835">95835</option>
+                    <option value="95837">95837</option>
+                    <option value="95838">95838</option>
+                    <option value="95841">95841</option>
+                    <option value="95842">95842</option>
+                    <option value="95843">95843</option>
+                    <option value="95864">95864</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col container my-4">
+                <h6>
+                    Bedrooms:
+                </h6>
+                <select class="form-control select2" searchable="Search here..">
+                    <option value="" disabled selected>Number of Bedrooms</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Bathrooms:
+                </h6>
+                <select class="form-control select2" searchable="Search here..">
+                    <option value="" disabled selected>Number of Bathrooms</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Square Feet:
+                </h6>
+                <input class="form-control" id="sqft" placeholder="Sq/ft" name="sqft">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col container my-4">
+                <h6>
+                    Home Type:
+                </h6>
+                <select class="form-control select2" searchable="Search here..">
+                    <option value="" disabled selected>Home Type</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Multi Family">Multi Family</option>
+                    <option value="Single Family Home">Single Family Home</option>
+                    <option value="Townhouse">Townhouse</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Lot Size (sq/ft):
+                </h6>
+                <input class="form-control" id="lotsize" placeholder="Lot Size (Sq/ft)" name="lotsize">
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Year Built:
+                </h6>
+                <input class="form-control" id="yearbuilt" placeholder="Year Built" name="yearbuilt">
+            </div>
+        </div>
+        <div class="row sierraFacts">
+            <div class="col sierraFacts">
+                <img src="static/towerbridge2.jpg" alt="Sierra Nevada Mountains" width="100%">
+                <div class="panel panel-info">
+                    <div class="panel-heading" style="font-size: 2em;">About Sacramento</div>
+                    <div class="panel-body">
+                        <h4>What's it like to live in Sacramento?</h4>
+                        <p>
+                            Many people think Sacramento's best attribute is that it's located a few hours from exciting destinations like San Francisco and Lake Tahoe. Though it's constantly overshadowed by cosmopolitan places in its own state, Sacramento is undergoing a transition,
+                            with technological and cultural developments breathing new life into the California capital. </p>
+                        <p>Drawn to the reasonable cost of living, abundant sunshine and ethnic diversity, young professionals and middle-class families are leading a population boom not seen since the Gold Rush. Economic development and a resurgent real
+                            estate market are providing exciting opportunities for locals and newcomers alike. </p>
+                        <p>Sacramento also beckons to foodies. Sitting in the heart of the Central Valley, the metro area is at the forefront of the farm-to-fork movement. Residents have access to an abundance of fresh, locally sourced foods from nearby
+                            farms, wineries and breweries. </p>
+                        </p>
+                        <h4>Cost of living</h4>
+                        <p>
+                            Sacramento residents benefit from a desirable income to cost-of-living ratio. The average annual income is higher than the national average (albeit relatively low by California standards). Although the median home sale price in Sacramento is significantly
+                            higher than the national median, they're noticeably lower than those in other major California metro areas – which is one of the factors helping to drive Sacramento's population growth.
+                        </p>
+                        <h4>Demographics</h4>
+                        <p>
+                            Sacramento has historically been a family-centric town, but an influx of younger residents has diversified the population. Often recognized as one of America's most integrated metro areas, Sacramento has a growing LGBT enclave in the Lavender Heights
+                            neighborhood, an arts community and a predominately multi-ethnic population in North and South Sacramento. </p>
+                        <p>A much younger and more liberal demographic is concentrated in center-city neighborhoods like Midtown and Southside Park. But in recent years, expensive rents and gentrification have pushed lower-income residents farther from the
+                            downtown area. With a rich blend of distinct cultures and ethnicities, Sacramento residents affiliate with many different religions. Of the 37 percent of religious residents, Catholicism is the most practiced. This is in part
+                            due to the Cathedral of the Blessed Sacrament, the cathedral of the Roman Catholic church in the U.S., is located in Sacramento. Sacramento households are increasingly becoming multi-linguistic. About 30 percent of households
+                            speak another language other than English. </p>
+                        <h4>What to do in Sacramento?</h4>
+                        <p>
+                            Sacramentans have a hungry appetite for the outdoors, which is partially satisfied by more than 200 public parks. Meanwhile, recreational opportunities abound along the 32-mile American River Parkway, which runs from downtown to the historic Folsom suburb.
+                            With so many ways to be active, it's no wonder Sacramento's residents are among the fittest in the country. </p>
+                        <p>Additionally, whether it's attending farmers markets under the freeway or catching music at Concerts in the Park, Sacramentans enjoy coming together to celebrate their community. A very popular community gathering is the 2nd Saturday
+                            Art Walk, where thousands of metropolitan residents turn out to support local artists and small businesses. </p>
+                        <p style="font-style: italic, font-size: 1em">Source: <a href="https://realestate.usnews.com/places/california/sacramento" target="_blank">US News: Sacramento, CA - Written By: Ernesto Morales</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row" style="align-items: center;">
+            <div class="col" style="align-items: center;">
+
+            </div>
+        </div>
+        <img src="static/sac-homes.svg" alt="Sac Homes Logo" width="200" style="display: block; margin: auto; margin-bottom: 5px;">
+    </div>
+
+    <!-- Footer -->
+    <footer class=" page-footer font-small blue ">
+
+        <div class="text-center py-3 white ">Dashboard created by Tom Bergamaschi, Josh Lowy, Kevin Scheller.
+            <br> UC Davis: Data Analytics Bootcamp 2020
+        </div>
+
+    </footer>
+    <!-- Footer -->
+
+</body>
+
+<!-- D3 -->
+<script src="https://d3js.org/d3.v5.min.js "></script>
+<!-- Leaflet -->
+<!-- Plotly -->
+<!-- Personal JS -->
+<script type="text/javascript " src="{{ url_for( 'static', filename='js/script.js' ) }} "></script>
+
+</html>
