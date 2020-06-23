@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect 
+from flask import Flask, render_template, redirect, request, jsonify
 from flask_pymongo import PyMongo
 import os
 import pymongo
@@ -100,16 +100,33 @@ def predict_rent_price(feature_dict):
     
     # Read through inputted data and update the encoded list
     for key in feature_dict.keys():
-        if type(feature_dict[key]) == list:
-            for item in feature_dict[key]:
-                encoded_list[rent_cols.index(f'{key}_{item}')] = 1
-        elif type(feature_dict[key]) == float:
-            encoded_list[rent_cols.index(key)] = feature_dict[key]
-        else:
-            encoded_list[rent_cols.index(f'{key}_{item}')] = 1
+        try:
+            if type(feature_dict[key]) == list:
+                for item in feature_dict[key]:
+                    encoded_list[rent_cols.index(f'{key}_{item}')] = 1
+            elif key in rent_medians.keys():
 
+                encoded_list[rent_cols.index(key)] = feature_dict[key]
+            else:
+                encoded_list[rent_cols.index(f'{key}_{item}')] = 1
+        except Exception as e:
+            continue
+        
     return test_model.predict(encoded_list)
 
+@app.route('/test', methods=['POST'])
+def test():
+    data = request.get_json()
+    print(data)
+    return jsonify(data['key'])
+
+@app.route('/test2',methods = ['POST', 'GET'])
+def result():
+    if request.method == 'POST':
+      result = request.values
+      print(result)
+    #   return render_template("result.html",result = result)
+    return render_template("index.html")
 # Run app
 if __name__ == '__main__':
     app.run(debug=True)
