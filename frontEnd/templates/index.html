@@ -15,9 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <!-- Plotly -->
     <!-- Personal Styles -->
     <link rel="stylesheet" href="static/css/styles.css">
@@ -55,8 +53,8 @@
                 <h6>
                     Neighborhood:
                 </h6>
-                <select class="form-control select2" searchable="Search here..">
-                    <option value="" disabled selected>Choose your neighborhood</option>
+                <select id="neighborhood" class="form-control select2" searchable="Search here..">
+                    <option value="" selected></option>
                     <option value="Alhambra Triangle">Alhambra Triangle</option>
                     <option value="Alkali Flat">Alkali Flat</option>
                     <option value="American River Canyon">American River Canyon</option>
@@ -206,8 +204,8 @@
                 <h6>
                     Zipcode:
                 </h6>
-                <select class="form-control select2" searchable="Search here..">
-                    <option value="" disabled selected>Choose your zipcode</option>
+                <select id="zipcode" class="form-control select2" searchable="Search here..">
+                    <option value="" selected></option>
                     <option value="95605">95605</option>
                     <option value="95608">95608</option>
                     <option value="95610">95610</option>
@@ -258,14 +256,32 @@
                     <option value="95864">95864</option>
                 </select>
             </div>
+            <div class="col container my-4">
+                <h6>
+                    Home Type:
+                </h6>
+                <select id="home_type" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Multi Family">Multi Family</option>
+                    <option value="Single Family Home">Single Family Home</option>
+                    <option value="Townhouse">Townhouse</option>
+                </select>
+            </div>
         </div>
         <div class="row">
             <div class="col container my-4">
                 <h6>
+                    Year Built:
+                </h6>
+                <input id="year_built" class="form-control" placeholder="Year Built" name="yearbuilt">
+            </div>
+            <div class="col container my-4">
+                <h6>
                     Bedrooms:
                 </h6>
-                <select class="form-control select2" searchable="Search here..">
-                    <option value="" disabled selected>Number of Bedrooms</option>
+                <select id="bedrooms" class="form-control ">
+                    <option value="" selected></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -277,8 +293,8 @@
                 <h6>
                     Bathrooms:
                 </h6>
-                <select class="form-control select2" searchable="Search here..">
-                    <option value="" disabled selected>Number of Bathrooms</option>
+                <select id="bathrooms" class="form-control ">
+                    <option value="" selected></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -290,35 +306,282 @@
                 <h6>
                     Square Feet:
                 </h6>
-                <input class="form-control" id="sqft" placeholder="Sq/ft" name="sqft">
+                <input id="sqft" class="form-control" placeholder="Sq/ft" name="sqft">
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Floor Type:
+                </h6>
+                <select id="floor_types" class="form-control">
+                <option value="" selected></option>
+                <option value="Hardwood">Hardwood</option>
+                <option value="Tile">Tile</option>
+                <option value="Laminate">Laminate</option>
+                <option value="Linoleum Vinyl">Linoleum Vinyl</option>
+                <option value="Concrete">Concrete</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col container my-4">
+                <h6>
+                    Laundry:
+                </h6>
+                <select id="laundry" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="In Unit">In Unit</option>
+                    <option value="Shared">Shared</option>
+                    <option value="Hookups">Hookups</option>
+                    <option value="OnSiteLaundry">OnSiteLaundry</option>
+                    <option value="Laundry Facilities">Laundry Facilities</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Washer:
+                </h6>
+                <select id="washer" class="form-control ">
+                <option value="" selected></option>
+                <option value="Washer">Washer</option>
+                <option value="Washer Dryer Hookup">Washer Dryer Hookup</option>                
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Dryer:
+                </h6>
+                <select id="dryer" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Pets:
+                </h6>
+                <select id="pets" class="form-control" multiple="multiple">
+                    <option value="No pets allowed">No pets allowed</option>
+                    <option value="Cats Allowed">Cats Allowed</option>
+                    <option value="Small dogs allowed">Small dogs allowed</option>
+                    <option value="Large dogs allowed">Large dogs allowed</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Utilities:
+                </h6>
+                <select id="util" class="form-control" multiple="multiple">
+                    <option value="Sewage">Sewage</option>
+                    <option value="Garbage">Garbage</option>
+                    <option value="Water">Water</option>
+                    <option value="Hot Water">Hot Water</option>
+                    <option value="Internet">Internet</option>
+                    <option value="Cable">Cable</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Gas">Gas</option>
+                    <option value="Heat">Heat</option>
+                    <option value="Phone">Phone</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col container my-4">
                 <h6>
-                    Home Type:
+                    Smoking Allowed:
                 </h6>
-                <select class="form-control select2" searchable="Search here..">
-                    <option value="" disabled selected>Home Type</option>
-                    <option value="Apartment">Apartment</option>
-                    <option value="Multi Family">Multi Family</option>
-                    <option value="Single Family Home">Single Family Home</option>
-                    <option value="Townhouse">Townhouse</option>
+                <select id="smoking" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                 </select>
             </div>
             <div class="col container my-4">
                 <h6>
-                    Lot Size (sq/ft):
+                    Dishwasher:
                 </h6>
-                <input class="form-control" id="lotsize" placeholder="Lot Size (Sq/ft)" name="lotsize">
+                <select id="dishwasher" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>              
+                </select>
             </div>
             <div class="col container my-4">
                 <h6>
-                    Year Built:
+                    Microwave:
                 </h6>
-                <input class="form-control" id="yearbuilt" placeholder="Year Built" name="yearbuilt">
+                <select id="microwave" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Refrigerator:
+                </h6>
+                <select id="refridgerator" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Fireplace:
+                </h6>
+                <select id="fireplace" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
             </div>
         </div>
+        <div class="row">
+            <div class="col container my-4">
+                <h6>
+                    On-site Maintenance:
+                </h6>
+                <select id="on_site_maint" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    On-site Management:
+                </h6>
+                <select id="on_site_mng" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>              
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Air Conditioning:
+                </h6>
+                <select id="air_con" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Disposal:
+                </h6>
+                <select id="disposal" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Basketball Court:
+                </h6>
+                <select id="basketball" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col container my-4">
+                <h6>
+                    Patio:
+                </h6>
+                <select id="patio" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>              
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Pool:
+                </h6>
+                <select id="pool" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Balcony:
+                </h6>
+                <select id="balcony" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Ceiling Fan:
+                </h6>
+                <select id="ceiling_fan" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col container my-4">
+                <h6>
+                    Fitness Center:
+                </h6>
+                <select id="fitness" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Playground:
+                </h6>
+                <select id="playground" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>              
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    BBQ:
+                </h6>
+                <select id="bbq" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="col container my-4">
+                <h6>
+                    Vaulted Ceiling:
+                </h6>
+                <select id="vaulted_ceiling" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <button id="submitButton" type="button" class="btn btn-primary btn-lg btn-block">Generate Suggested Rental Price</button>
+        </div>
+        <div class="row" id="finalAmount" style="text-align: center; display: none;">
+            <h2 style="margin:auto; color:green;">$4,000/mo</h2>
+        </div>
+        <hr>
         <div class="row sierraFacts">
             <div class="col sierraFacts">
                 <img src="static/towerbridge2.jpg" alt="Sierra Nevada Mountains" width="100%">
