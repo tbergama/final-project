@@ -46,7 +46,7 @@
     </div>
     <div class="container">
         <h4>Enter your filter criteria:</h4>
-        <form>
+        <form id='rent_form' action='/test2' method="POST">
             <div class="row">
 
                 <div class="col container my-4">
@@ -54,7 +54,7 @@
                     <h6>
                         Neighborhood:
                     </h6>
-                    <select id="neighborhood" class="form-control select2" searchable="Search here..">
+                    <select name="neighborhood" class="form-control select2" searchable="Search here..">
                     <option value="" selected></option>
                     <option value="Alhambra Triangle">Alhambra Triangle</option>
                     <option value="Alkali Flat">Alkali Flat</option>
@@ -205,7 +205,7 @@
                     <h6>
                         Zipcode:
                     </h6>
-                    <select id="zipcode" class="form-control select2" searchable="Search here..">
+                    <select name="zipcode" class="form-control select2" searchable="Search here..">
                     <option value="" selected></option>
                     <option value="95605">95605</option>
                     <option value="95608">95608</option>
@@ -261,7 +261,7 @@
                     <h6>
                         Home Type:
                     </h6>
-                    <select id="home_type" class="form-control ">
+                    <select name="home_type" class="form-control ">
                     <option value="" selected></option>
                     <option value="Apartment">Apartment</option>
                     <option value="Multi Family">Multi Family</option>
@@ -276,13 +276,13 @@
             <h6>
                 Year Built:
             </h6>
-            <input id="year_built" class="form-control" placeholder="Year Built" name="yearbuilt">
+            <input name="year_built" class="form-control" placeholder="Year Built" name="yearbuilt">
         </div>
         <div class="col container my-4">
             <h6>
                 Bedrooms:
             </h6>
-            <select id="beds" class="form-control ">
+            <select name="beds" class="form-control ">
                     <option value="" selected></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -295,7 +295,7 @@
             <h6>
                 Bathrooms:
             </h6>
-            <select id="baths" class="form-control ">
+            <select name="baths" class="form-control ">
                     <option value="" selected></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -308,13 +308,13 @@
             <h6>
                 Square Feet:
             </h6>
-            <input id="square_footage" class="form-control" placeholder="Sq/ft" name="sqft">
+            <input name="square_footage" class="form-control" placeholder="Sq/ft" name="sqft">
         </div>
         <div class="col container my-4">
             <h6>
                 Floor Type:
             </h6>
-            <select id="floor_types" class="form-control">
+            <select name="floor_types" class="form-control">
                 <option value="" selected></option>
                 <option value="Hardwood">Hardwood</option>
                 <option value="Tile">Tile</option>
@@ -330,7 +330,7 @@
             <h6>
                 Laundry:
             </h6>
-            <select id="laundry" class="form-control ">
+            <select name="laundry" class="form-control ">
                     <option value="" selected></option>
                     <option value="In Unit">In Unit</option>
                     <option value="Shared">Shared</option>
@@ -343,7 +343,7 @@
             <h6>
                 Washer:
             </h6>
-            <select id="washer" class="form-control ">
+            <select name="washer" class="form-control ">
                 <option value="" selected></option>
                 <option value="Washer">Washer</option>
                 <option value="Washer Dryer Hookup">Washer Dryer Hookup</option>                
@@ -353,7 +353,7 @@
             <h6>
                 Dryer:
             </h6>
-            <select id="dryer" class="form-control ">
+            <select name="dryer" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -363,7 +363,7 @@
             <h6>
                 Pets:
             </h6>
-            <select id="pets" class="form-control" multiple="multiple">
+            <select name="pets" class="form-control" multiple="multiple">
                     <option value="No pets allowed">No pets allowed</option>
                     <option value="Cats Allowed">Cats Allowed</option>
                     <option value="Small dogs allowed">Small dogs allowed</option>
@@ -374,7 +374,7 @@
             <h6>
                 Utilities:
             </h6>
-            <select id="util" class="form-control" multiple="multiple">
+            <select name="util" class="form-control" multiple="multiple">
                     <option value="Sewage">Sewage</option>
                     <option value="Garbage">Garbage</option>
                     <option value="Water">Water</option>
@@ -393,7 +393,7 @@
             <h6>
                 Smoking Allowed:
             </h6>
-            <select id="smoking" class="form-control ">
+            <select name="smoking" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -403,7 +403,7 @@
             <h6>
                 Dishwasher:
             </h6>
-            <select id="dishwasher" class="form-control ">
+            <select name="dishwasher" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>              
@@ -413,7 +413,7 @@
             <h6>
                 Microwave:
             </h6>
-            <select id="microwave" class="form-control ">
+            <select name="microwave" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -423,7 +423,7 @@
             <h6>
                 Refrigerator:
             </h6>
-            <select id="refrigerator" class="form-control ">
+            <select name="refrigerator" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -433,7 +433,7 @@
             <h6>
                 Fireplace:
             </h6>
-            <select id="fireplace" class="form-control ">
+            <select name="fireplace" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -445,7 +445,7 @@
             <h6>
                 On-site Maintenance:
             </h6>
-            <select id="on_site_maint" class="form-control ">
+            <select name="on_site_maint" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -455,7 +455,7 @@
             <h6>
                 On-site Management:
             </h6>
-            <select id="on_site_mng" class="form-control ">
+            <select name="on_site_mng" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>              
@@ -465,7 +465,7 @@
             <h6>
                 Air Conditioning:
             </h6>
-            <select id="air_con" class="form-control ">
+            <select name="air_con" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -475,7 +475,7 @@
             <h6>
                 Disposal:
             </h6>
-            <select id="disposal" class="form-control ">
+            <select name="disposal" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -485,7 +485,7 @@
             <h6>
                 Basketball Court:
             </h6>
-            <select id="basketball" class="form-control ">
+            <select name="basketball" class="form-control ">
                     <option value="" selected></option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -577,6 +577,7 @@
                 </select>
         </div>
     </div>
+    <input type="submit">
     </form>
     </div>
     <div class="container">

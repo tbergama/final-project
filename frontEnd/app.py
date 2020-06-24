@@ -120,13 +120,13 @@ def test():
     print(data)
     return jsonify(data['key'])
 
-@app.route('/test2',methods = ['POST', 'GET'])
-def result():
-    if request.method == 'POST':
-      result = request.values
-      print(result)
-    #   return render_template("result.html",result = result)
-    return render_template("index.html")
+@app.route('/test2', methods=['POST'])
+def my_form_post():
+    my_form = request.form
+    print(my_form)
+    # processed_text = text.upper()
+    return my_form
+
 # Run app
 if __name__ == '__main__':
     app.run(debug=True)

@@ -13,22 +13,7 @@ d3.select("#submitButton").on("click", function() {
 
 // Grab inputted data
 function get_inputs() {
-    // Get entire form
-    var rent_form = d3.select('#rent_form');
-    // Grab all 'input' elements and all 'select' elements
-    var input_fields = rent_form.selectall('input');
-    var select_fields = rent_form.selectAll('select');
-
-    // Define our return object
-    var input_dict = {};
-
-    // Iterate through our input/select elements and if filled, add to our return object
-    input_fields.forEach(function(d) {
-        input_dict[d.attr('id')] = d.property('value');
-    });
-    select_fields.forEach(function(d) {
-        input_dict[d.attr('id')] = d.property('value');
-    });
+    var input_dict = $('#rent_form').serializeArray();
 
     return input_dict;
 }
