@@ -6,10 +6,7 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
 
-// Submit button
-d3.select("#submitButton").on("click", function() {
-    d3.select.("#finalAmount").style("display", "block");
-});
+
 
 // Grab inputted data
 function get_inputs() {
@@ -21,17 +18,21 @@ function get_inputs() {
 // Define submit/predict button
 var predict_button = d3.select('#predict');
 
-// Requires JSGlue
 
-function submit_data(inputs) {
-    $.ajax({
-            url: Flask.url_for('predict_rent_price'),
-            type: 'POST',
-            data: JSON.stringify(movies), // converts js value to JSON string
-        })
-        .done(function(result) { // on success get the return object from server
-            console.log(result); // do whatever with it. In this case see it in console
-        });
+function submit_data(data){
+    fetch('/model-predict', {
+
+    // Specify the method
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    // A JSON payload
+    body: JSON.stringify(data)
+}).then(response => response.json())
+    .then(function (data){
+    console.log(data);
+});
 }
 
 function predict() {
@@ -41,3 +42,7 @@ function predict() {
 predict_button.on('click', function() {
     predict();
 });
+// Submit button
+// d3.select("#submitButton").on("click", function() {
+//     d3.select.("#finalAmount").style("display", "block");
+// });

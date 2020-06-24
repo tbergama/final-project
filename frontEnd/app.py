@@ -4,11 +4,13 @@ import os
 import pymongo
 from bson.json_util import dumps
 import json
+import pickle
+import numpy as np
 
-# Load the model
-from tensorflow.keras.models import load_model
-test_model = load_model("../machineLearning/test_model.h5")
-
+# Load the model and scaler
+# import xgboost
+model = pickle.load(open("../machineLearning/xgboost_model.pkl", "rb"))
+scaler = pickle.load(open("../machineLearning/min_max_scaler.pkl", "rb"))
 
 app = Flask(__name__)
 
@@ -17,9 +19,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/model-predict')
-def predict_rent_price(feature_dict):
-    
+@app.route('/model-predict', methods=['POST'])
+def predict_rent_price():
+    feature_dict = request.get_json()
+
     # Define rent columns and medians
     rent_cols = ['city_Antelope', 'city_Carmichael', 'city_Citrus Heights', 'city_Elk Grove', 
         'city_Fair Oaks', 'city_Folsom', 'city_Gold River', 'city_North Highlands', 'city_Orangevale', 
@@ -67,7 +70,7 @@ def predict_rent_price(feature_dict):
         'living_room_Living room', 'dishwasher_Dishwasher', 'microwave_Microwave', 
         'refrigerator_Refrigerator', 'on_site_maint_Online Maintenance Portal', 
         'on_site_mng_On-Site Management', 'laundry_Hookups', 'laundry_In Unit', 'laundry_Laundry Facilities', 
-        'laundry_OnSiteLaundry', 'laundry_Shared', 'laundry_none', 'air_con_Air Conditioning', 
+        'laundry_OnSiteLaundry', 'laundry_Shared', 'air_con_Air Conditioning', 
         'disposal_Disposal', 'dryer_Dryer', 'patio_Patio', 'pool_Pool', 'balcony_Balcony', 'washer_Washer', 
         'washer_Washer Dryer Hookup', 'basketball_Basketball Court', 'ceiling_fan_Ceiling Fan', 
         'fireplace_Fireplace', 'fitness_Fitness Center', 'playground_Playground', 'floor_types_Concrete', 
@@ -99,26 +102,35 @@ def predict_rent_price(feature_dict):
     
     
     # Read through inputted data and update the encoded list
-    for key in feature_dict.keys():
-        try:
-            if type(feature_dict[key]) == list:
-                for item in feature_dict[key]:
-                    encoded_list[rent_cols.index(f'{key}_{item}')] = 1
-            elif key in rent_medians.keys():
-
-                encoded_list[rent_cols.index(key)] = feature_dict[key]
-            else:
-                encoded_list[rent_cols.index(f'{key}_{item}')] = 1
-        except Exception as e:
+    for feature in feature_dict:
+        # print(feature)
+        if feature['value'] == '':
             continue
-        
-    return test_model.predict(encoded_list)
+        else:
+            try:
+                if type(feature['value']) == list:
+                    for item in feature['value']:
+                        encoded_list[rent_cols.index(f"{feature['name']}_{item}")] = 1
+                elif feature['name'] in rent_medians.keys():
+                    encoded_list[rent_cols.index(feature['name'])] = feature['value']
+                else:                
+                    encoded_list[rent_cols.index(f"{feature['name']}_{feature['value']}")] = 1
+            except Exception as e:
+                continue
+    
+    # print(encoded_list)
+    print('Scaling data...')
+    # Scale data
+    scaled_features = scaler.transform(np.array(encoded_list).reshape(1,-1))
+    print('Returning prediction...')
+    # Return prediction
+    return model.predict(scaled_features)
 
 @app.route('/test', methods=['POST'])
 def test():
     data = request.get_json()
     print(data)
-    return jsonify(data['key'])
+    return '4250'
 
 @app.route('/test2', methods=['POST'])
 def my_form_post():
