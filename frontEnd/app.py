@@ -132,6 +132,7 @@ def predict_rent_price():
     print(str(prediction[0][0]))
     return str(round(prediction[0][0]))
 
+
 # Run app
 if __name__ == '__main__':
     app.run(debug=True)
