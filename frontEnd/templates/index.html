@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!------ Include the above in your HEAD tag ---------->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -391,7 +392,7 @@
             <div class="row">
                 <div class="col container my-4">
                     <h6>
-                        Smoking Allowed:
+                        No Smoking:
                     </h6>
                     <select name="smoking" class="form-control ">
                     <option value="" selected></option>
@@ -534,6 +535,16 @@
                     <option value="No">No</option>
                 </select>
                 </div>
+                <div class="col container my-4">
+                    <h6>
+                        Living Room:
+                    </h6>
+                    <select name="living_room" class="form-control ">
+                    <option value="" selected></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                </div>
             </div>
             <div class="row">
                 <div class="col container my-4">
@@ -577,7 +588,7 @@
                 </select>
                 </div>
             </div>
-            <input type="submit">
+
         </form>
     </div>
 
@@ -585,8 +596,8 @@
         <div class="row">
             <button id="submitButton" type="button" class="btn btn-primary btn-lg btn-block">Generate Suggested Rental Price</button>
         </div>
-        <div class="row" id="finalAmount" style="text-align: center; display: none;">
-            <h2 style="margin:auto; color:green;">$4,000/mo</h2>
+        <div class="row" id="finalAmountdiv" style="text-align: center; display: none;">
+            <h1 id="finalAmount" style="margin:auto; color:green;">$4,000/mo</h1>
         </div>
         <hr>
     </div>

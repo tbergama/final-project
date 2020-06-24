@@ -1,10 +1,10 @@
 //searchable dropdown
 $('.select2').select2();
 
-// Popover
-$(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
-});
+// // Popover
+// $(document).ready(function() {
+//     $('[data-toggle="popover"]').popover();
+// });
 
 
 
@@ -32,7 +32,10 @@ function submit_data(data) {
         }).then(response => response.json())
         .then(function(data) {
             console.log(data);
+            d3.select("#finalAmount").text("$" + data);
+            d3.select("#finalAmountdiv").style("display", "block");
         });
+
 }
 
 function predict() {
@@ -43,6 +46,4 @@ predict_button.on('click', function() {
     predict();
 });
 // Submit button
-d3.select("#submitButton").on("click", function() {
-    d3.select.("#finalAmount").style("display", "block");
-});
+d3.select("#submitButton").on("click", predict);
