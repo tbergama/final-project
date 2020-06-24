@@ -10,17 +10,11 @@ $('.select2').select2();
 
 // Grab inputted data
 function get_inputs() {
-    var input_dict = $('#rent_form').serializeArray();
-
-    return input_dict;
+    return $('#rent_form').serializeArray();
 }
 
-// Define submit/predict button
-var predict_button = d3.select('#predict');
-
-
 function submit_data(data) {
-    fetch('/test', {
+    fetch('/model-predict', {
 
             // Specify the method
             method: 'POST',
@@ -42,8 +36,6 @@ function predict() {
     submit_data(get_inputs());
 }
 
-predict_button.on('click', function() {
-    predict();
-});
+
 // Submit button
 d3.select("#submitButton").on("click", predict);
