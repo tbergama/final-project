@@ -9,6 +9,10 @@ predict home price or rental price based on an assortment of property features. 
 than what our model and selection of features can grasp, but we aim to use this model as a starting point and reference for future
 assessment.
 
+## Deployment
+This project is deployable via locally hosted webpage.  The home route is our price generator, and the /methods route is a detailed
+analysis and breakdown of the project.  This route can also be accessed from the "Read more..." link on the home page.
+
 ## File Tree
 - **preProcessing**
   Raw listing data, cleanup and encoding notebooks (.ipynb), and clean/encoded data (.csv)
