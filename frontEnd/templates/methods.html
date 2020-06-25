@@ -100,6 +100,7 @@
         <hr>
         <h4>Analysis</h4>
         <div class="row">
+            <h6>Models</h6>
             <p>
                 We attribute the undesireable performance of our models to the size of our dataset.  Our rent
                 listing data consisted of only just over 1,000 records.  We were attempting to model price 
@@ -109,6 +110,18 @@
                 could have attained more desireable accuracy.  More data was not acquisitioned due to our 
                 deadline.  Other data sources were also explored, however, again for time related reasons for
                 cleanup/preprocessing these were abandoned.
+            </p>
+            <h6>Data</h6>
+            <p>
+                The data we sourced was accumulated by Trulia from its proprietary sources.  We cannot speak
+                to its accuracy in any respect whether that be the price or the presence of a feature.  We 
+                therefore assumed we had true positives, but not necessarily true negatives.  This adds great
+                ambiguity to our modeling problem.  We also understand the assumed value a specific feature
+                adds to a listing price is highly variable.  A pool on one property may differ greatly from a
+                pool on another.  Grouping/specificity of location features is also unknown from our data.  
+                Trulia does not outline neighborhood or zipcode boundaries, so these features which we felt 
+                were important to include in our modeling include some ambiguity and possibly redundancy we
+                could not account for.
             </p>
         </div>
         <hr>
