@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+    <!-- Plotly -->
+    <!-- Personal Styles -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Sacramento House Predictor</title>
+</head>
+
+<body class="bg-light">
+
+    <div class="container-fluid" id="topHeader">
+
+        <div class="jumbotron jumbo-bg logo-header">
+            <img src="static/sac-homes-blk.svg" alt="Sac Homes Logo" height="200">
+        </div>
+
+    </div>
+
+    <br>
+    <h1 style="text-align: center;">Methods and Analysis</h1>
+    <div class="container">
+        <h4>Abstract</h4>
+        <div class="row">
+            <p>
+                The correct valuation of a home or residence can be critical to the finances of any family or 
+                business. However, this problem is much more complicated than counting beds and baths. The 
+                use of machine learning enables us to model intricate relationship problems such as home 
+                valuation with relative ease. By using detailed home listing data, we have trained a model 
+                specific to the Sacramento area to predict home price or rental price based on an assortment 
+                of property features. Property price estimation is a much greater problem than what our model 
+                and selection of features can grasp, but we aim to use this model as a starting point and 
+                reference for future assessment.
+            </p>
+        </div>
+        <hr>
+        <h4>Materials</h4>
+        <div class="row">
+            <p>
+                Data from this project was originally sourced from Trulia 
+                (<a href='http://trulia.com'>Trulia.com</a>).  Rental listing price and property purchase
+                 listing prices were acquisitioned along with all provided listing details.  Approximately 
+                 4600 records total were used, all specific to the Sacramento region.
+            </p>
+        </div>
+        <hr>
+        <h4>Methods</h4>
+        <div class="row">
+            <h6>
+                Preprocessing and Cleanup
+            </h6>
+            <p>
+                All cleanup and preprocessing operations were performed in Python Jupyter notebooks with the 
+                use of the Pandas library.  Listings were denoted 'BUY' or 'RENT' based on their original 
+                distinction. The 'details' information was then grouped and analyzed to establish the most 
+                common and consistent property features across both buy and rent listings.
+                With these lists of features, the 'details' were parsed, and all inconsistencies were removed
+                 or corrected.  The clean data was then encoded using Pandas <a href='https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html'>get_dummies</a>
+                 one-hot-encoding feature.  For numeric features (i.e. number of bedrooms, square footage, 
+                 year built) the median value was imputed over null records.  The median was chosen due to the 
+                presence of outliers in the data and the small amount of records available.
+            </p>
+            <h6>
+                Modeling
+            </h6>
+            <p>
+                Linear regression was the problem model we chose to use as listing price was our single 
+                desired output.  Basic <a href='https://scikit-learn.org/stable/modules/linear_model.html#ordinary-least-squares'>sklearn linear regression</a>
+                performed with less than desired results (R^2 = 0.74) so we opted to explore other modeling libraries.
+                <a href='https://www.tensorflow.org/overview'>Tensorflow</a> has options for deep linear 
+                regression through their Keras API which gave us more utility to adjust and tinker with our
+                model.  Primarily using brute-force tactics we remained relatively unsatified with the results
+                of our models.  Rental listings in the Sacramento region float between $300 to $3000
+                (2 standard deviations from the mean($1735)) and we were aiming for mean average errors at or 
+                below $150.  None of our models were produced MAE values better than $380, so again we
+                 attempted to explore models.
+                After unsuccessfully training accurate models using gradient boosting techniques and XGBoost, 
+                we felt convinced the problem lied more with data than with our modeling techniques.  For this
+                reason we chose to only focus on modeling rent listing prices for the remainder of our time.
+                Our currently implemented model was built using Tensorflow libraries.
+            </p>
+        </div>
+        <hr>
+        <h4>Analysis</h4>
+        <div class="row">
+            <p>
+                We attribute the undesireable performance of our models to the size of our dataset.  Our rent
+                listing data consisted of only just over 1,000 records.  We were attempting to model price 
+                based on approximately ~30 different features of a property, which felt approachable.  
+                However, those 30-some features consisted of over 220 unique identifiers which added
+                significant complexity to our problem.  With a much larger dataset, we think any of our models
+                could have attained more desireable accuracy.  More data was not acquisitioned due to our 
+                deadline.  Other data sources were also explored, however, again for time related reasons for
+                cleanup/preprocessing these were abandoned.
+            </p>
+        </div>
+        <hr>
+        <h4>Conclusion</h4>
+        <div class="row">
+            <p>
+                Our currently implemented model still accepts 32 different inputs with over 200 identifiers.
+                It's performance is lackluster, but still consistently operates with an MAE of ~$400.  With 
+                more data to train with, we have confidence this value could be brought below $200 or less.
+            </p>
+        </div>
+        <br>
+        <a href='/'><h2 style="text-align: center;">Back to the Price Generator</h2></a>
+    </div>
+    <br>
+    
+
+    
+    <div class="container">
+        <img src="static/sac-homes.svg" alt="Sac Homes Logo" width="200" style="display: block; margin: auto; margin-bottom: 5px;">
+    </div>
+
+    <!-- Footer -->
+    <footer class=" page-footer font-small blue ">
+
+        <div class="text-center py-3 white ">Dashboard created by Tom Bergamaschi, Josh Lowy, Kevin Scheller.
+            <br> UC Davis: Data Analytics Bootcamp 2020
+        </div>
+
+    </footer>
+    <!-- Footer -->
+
+</body>
+
+<!-- D3 -->
+<script src="https://d3js.org/d3.v5.min.js "></script>
+<!-- Leaflet -->
+<!-- Plotly -->
+<!-- Personal JS -->
+<script type="text/javascript " src="{{ url_for( 'static', filename='js/script.js' ) }} "></script>
+
+</html>

@@ -20,6 +20,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/methods')
+def methods():
+    return render_template('methods.html')
+
 @app.route('/model-predict', methods=['POST'])
 def predict_rent_price():
     feature_dict = request.get_json()
