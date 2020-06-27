@@ -1,8 +1,6 @@
 from flask import Flask, render_template, redirect, request, jsonify
-from flask_pymongo import PyMongo
 import os
-import pymongo
-from bson.json_util import dumps
+#from bson.json_util import dumps
 import json
 import pickle
 import numpy as np
@@ -15,15 +13,17 @@ scaler = pickle.load(open("../tom/min_max_scaler.pkl", "rb"))
 
 app = Flask(__name__)
 
-
+# Home route: price generator
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# Methods route: analysis/writeup
 @app.route('/methods')
 def methods():
     return render_template('methods.html')
 
+# Prediction route: when it receives a request, returns predicted price
 @app.route('/model-predict', methods=['POST'])
 def predict_rent_price():
     feature_dict = request.get_json()

@@ -13,6 +13,7 @@ function get_inputs() {
     return $('#rent_form').serializeArray();
 }
 
+// Send request to flask and use response(prediction) in page
 function submit_data(data) {
     fetch('/model-predict', {
 
@@ -32,6 +33,7 @@ function submit_data(data) {
 
 }
 
+// POST request with inputted data
 function predict() {
     submit_data(get_inputs());
 }
