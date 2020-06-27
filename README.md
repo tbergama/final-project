@@ -15,6 +15,7 @@ assessment.
 - Pandas
 - Numpy
 - Tensorflow (keras.models.load_model)
+
 **Running the app**
 This project is deployable via locally hosted webpage:
   After installing the necessary dependencies, open an instance of your computer's terminal and navigate to the project directory then to '/frontEnd'.  The command `python app.py` will run our application on Flask's default port which display in your terminal console.  This route can be copy-pasted into your web browser of choice and our webpage will appear.
