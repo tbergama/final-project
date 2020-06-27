@@ -7,7 +7,7 @@ more complicated than counting beds and baths.  The use of machine learning enab
 as home valuation with relative ease.  By using detailed home listing data, we have trained a model specific to the Sacramento area to
 predict home price or rental price based on an assortment of property features.  Property price estimation is a much greater problem
 than what our model and selection of features can grasp, but we aim to use this model as a starting point and reference for future
-assessment.
+assessment. [Read more...](https://github.com/tbergama/final-project/blob/master/analysis.md)
 
 ## Deployment
 **Dependencies**
