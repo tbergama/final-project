@@ -32,5 +32,3 @@ The home route is our price generator, and the /methods route is a detailed anal
   Training and testing files for the model
 - **frontEnd**
   Front end files for hosting the predictor tool
-- **tom**
-  Currently implemented keras model, authored by guess who
